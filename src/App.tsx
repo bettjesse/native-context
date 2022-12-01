@@ -18,9 +18,15 @@ function usePokemonSource(): {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    fetch("/pokemon.json")
-      .then((response) => response.json())
-      .then((data) => setPokemon(data));
+    const fetchPokemon= async()=> {
+      const response= await fetch("/pokemon.json")
+      const data = await response.json()
+      setPokemon(data)
+    }
+    fetchPokemon()
+    // fetch("/pokemon.json")
+    //   .then((response) => response.json())
+    //   .then((data) => setPokemon(data));
   }, []);
 
   return { pokemon };
